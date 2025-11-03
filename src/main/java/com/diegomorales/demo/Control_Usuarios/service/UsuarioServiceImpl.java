@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.diegomorales.demo.Control_Usuarios.model.Usuario;
 import com.diegomorales.demo.Control_Usuarios.repository.UsuarioRepository;
+import com.diegomorales.demo.exception.ResourceNotFoundException;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,8 +21,9 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public Optional<Usuario> getUsuarioById(Long id){
-        return usuarioRepository.findById(id);
+    public Usuario getUsuarioById(Long id) {
+        return usuarioRepository.findById(id)
+            .orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado con id: " + id));
     }
 
     @Override
@@ -30,13 +32,17 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public Usuario updateUsuario(Long id, Usuario usuario){
-        if(usuarioRepository.existsById(id)){
-            usuario.setId(id);
-            return usuarioRepository.save(usuario);
-        } else {
-            return null;
-        }
+    public Usuario updateUsuario(Long id, Usuario usuario) {
+        return usuarioRepository.findById(id)
+            .map(existing -> {
+                if (usuario.getNombre() != null) existing.setNombre(usuario.getNombre());
+                if (usuario.getApellidos() != null) existing.setApellidos(usuario.getApellidos());
+                if (usuario.getCorreo() != null) existing.setCorreo(usuario.getCorreo());
+                if (usuario.getPassword() != null) existing.setPassword(usuario.getPassword());
+
+                return usuarioRepository.save(existing);
+            })
+            .orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado con id: " + id));
     }
 
     @Override

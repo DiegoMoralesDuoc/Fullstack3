@@ -65,7 +65,7 @@ public class Usuario {
         this.apellidos = apellidos;
     }
     
-    public void SetCorreo(String correo){
+    public void setCorreo(String correo){
         this.correo = correo;
     }
 
