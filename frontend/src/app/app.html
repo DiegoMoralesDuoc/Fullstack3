@@ -1,0 +1,14 @@
+
+<app-header (toggleSidebar)="toggleSidebar()" *ngIf="showMainLayout"></app-header>
+
+<div class="app-wrapper d-flex" *ngIf="showMainLayout">
+  <app-sidebar [visible]="sidebarVisible"></app-sidebar>
+  <main class="app-main flex-grow-1">
+    <router-outlet></router-outlet>
+  </main>
+</div>
+
+<div *ngIf="sidebarVisible" class="sidebar-overlay" (click)="toggleSidebar()"></div>
+<app-footer *ngIf="showMainLayout"></app-footer>
+
+<router-outlet *ngIf="!showMainLayout"></router-outlet>

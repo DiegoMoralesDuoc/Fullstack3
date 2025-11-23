@@ -1,0 +1,95 @@
+<div class="app-content p-4">
+  <div class="container-fluid">
+    <div class="card mx-auto" style="max-width: 600px;">
+      <div class="card-header bg-primary text-white">
+        <h3 class="card-title mb-0">Registrar nuevo usuario</h3>
+      </div>
+      <form (ngSubmit)="registrarUsuario()" #formRegistro="ngForm" novalidate>
+
+        <div *ngIf="alerta" class="alert" [ngClass]="'alert-' + alerta.tipo" role="alert">
+          {{ alerta.mensaje }}
+        </div>
+
+        <div class="card-body">
+          <div class="form-floating mb-3">
+            <input
+              id="name"
+              name="name"
+              type="text"
+              class="form-control"
+              required
+              [(ngModel)]="name"
+              #nameCtrl="ngModel"
+              [class.is-invalid]="nameCtrl.invalid && nameCtrl.touched"
+            />
+            <label for="name">Nombre Completo</label>
+            <div *ngIf="nameCtrl.invalid && nameCtrl.touched" class="invalid-feedback">
+              Introduce el nombre completo.
+            </div>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input
+              id="email"
+              name="email"
+              type="email"
+              class="form-control"
+              required
+              [(ngModel)]="email"
+              #emailCtrl="ngModel"
+              [class.is-invalid]="emailCtrl.invalid && emailCtrl.touched"
+            />
+            <label for="email">Correo electrónico</label>
+            <div *ngIf="emailCtrl.invalid && emailCtrl.touched" class="invalid-feedback">
+              Introduce un correo válido.
+            </div>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input
+              id="password"
+              name="password"
+              type="password"
+              class="form-control"
+              required
+              minlength="8"
+              [(ngModel)]="password"
+              #passwordCtrl="ngModel"
+              [class.is-invalid]="passwordCtrl.invalid && passwordCtrl.touched"
+            />
+            <label for="password">Contraseña</label>
+            <div *ngIf="passwordCtrl.invalid && passwordCtrl.touched" class="invalid-feedback">
+              Debe contener al menos 8 caracteres, una mayúscula, un número y un símbolo.
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="rol" class="form-label">Rol del usuario</label>
+            <select
+              id="rol"
+              name="rol"
+              class="form-select"
+              required
+              [(ngModel)]="rol"
+              #rolCtrl="ngModel"
+              [class.is-invalid]="rolCtrl.invalid && rolCtrl.touched"
+            >
+              <option value="user">Usuario</option>
+              <option value="jefatura">Jefatura</option>
+              <option value="admin">Administrador</option>
+            </select>
+            <div *ngIf="rolCtrl.invalid && rolCtrl.touched" class="invalid-feedback">
+              Selecciona un rol válido.
+            </div>
+          </div>
+        </div>
+
+        <div class="card-footer text-end">
+          <button type="submit" class="btn btn-primary" [disabled]="formRegistro.invalid">
+            Registrar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
