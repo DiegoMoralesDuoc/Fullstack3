@@ -7,7 +7,7 @@ import { Soporte } from './components/soporte/soporte';
 import { Listalluser } from './components/listalluser/listalluser';
 import { Tickets } from './components/tickets/tickets';
 import { Herramientas } from './components/herramientas/herramientas';
-import { Proyectos } from './components/proyectos/proyectos';
+import { Laboratorios } from './components/laboratorios/laboratorios';
 import { Materiales } from './components/materiales/materiales';
 import { AuthGuard } from './guards/auth.guard';
 
@@ -21,7 +21,7 @@ export const routes: Routes = [
   { path: 'listalluser', component: Listalluser, canActivate: [AuthGuard] },
   { path: 'tickets', component: Tickets, canActivate: [AuthGuard] },
   { path: 'herramientas', component: Herramientas, canActivate: [AuthGuard] },
-  { path: 'proyectos', component: Proyectos, canActivate: [AuthGuard] },
+  { path: 'laboratorios', component: Laboratorios, canActivate: [AuthGuard] },
   { path: 'materiales', component: Materiales, canActivate: [AuthGuard] },
   { path: '**', redirectTo: '/login' }
 ];

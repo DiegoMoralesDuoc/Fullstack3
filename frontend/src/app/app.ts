@@ -19,7 +19,7 @@ import { FooterComponent } from './shared/footer/footer';
   styleUrls: ['./app.scss']
 })
 export class App {
-  protected title = 'toolbox';
+  protected title = 'lab_box';
   sidebarVisible = true;
   showMainLayout = true;
 

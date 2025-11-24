@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Proyectos } from './proyectos';
+import { Laboratorios } from './laboratorios';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { JsonService } from '../../services/json.service';
 import { of } from 'rxjs';
@@ -7,9 +7,9 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PLATFORM_ID } from '@angular/core';
 
-describe('Proyectos', () => {
-  let component: Proyectos;
-  let fixture: ComponentFixture<Proyectos>;
+describe('Laboratorios', () => {
+  let component: Laboratorios;
+  let fixture: ComponentFixture<Laboratorios>;
   let mockJsonService: jasmine.SpyObj<JsonService>;
 
   beforeEach(async () => {
@@ -19,7 +19,7 @@ describe('Proyectos', () => {
 
     await TestBed.configureTestingModule({
       imports: [
-        Proyectos,
+        Laboratorios,
         HttpClientTestingModule,
         CommonModule,
         ReactiveFormsModule
@@ -30,7 +30,7 @@ describe('Proyectos', () => {
       ]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(Proyectos);
+    fixture = TestBed.createComponent(Laboratorios);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

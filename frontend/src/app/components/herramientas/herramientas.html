@@ -28,10 +28,10 @@
                 </select>
             </div>
             <div class="col-md-4 mb-3">
-              <label for="proyectoActual">Proyecto Actual</label>
-              <select id="proyectoActual" class="form-select" formControlName="proyectoActual">
-                <option value="">-- Seleccione proyecto --</option>
-                <option *ngFor="let p of proyectos" [value]="p.nombre">{{ p.nombre }}</option>
+              <label for="laboratorioActual">Laboratorio Actual</label>
+              <select id="laboratorioActual" class="form-select" formControlName="laboratorioActual">
+                <option value="">-- Seleccione laboratorio --</option>
+                <option *ngFor="let p of laboratorios" [value]="p.nombre">{{ p.nombre }}</option>
               </select>
             </div>
             <div class="col-md-4 mb-3">
@@ -62,7 +62,7 @@
         <form [formGroup]="herramientaForm" (ngSubmit)="guardarCambios()">
           <div class="row">
             <!-- Mostrar todos los campos para admin -->
-            <ng-container *ngIf="isAdmin; else soloBodegaProyecto">
+            <ng-container *ngIf="isAdmin; else soloBodegaLaboratorio">
               <div class="col-md-4 mb-3">
                 <label for="nombreEdit">Nombre</label>
                 <input id="nombreEdit" class="form-control" formControlName="nombre" />
@@ -82,10 +82,10 @@
                   </select>
               </div>
               <div class="col-md-4 mb-3">
-                <label for="proyectoActualEdit">Proyecto Actual</label>
-                <select id="proyectoActualEdit" class="form-select" formControlName="proyectoActual">
-                  <option value="">-- Seleccione proyecto --</option>
-                  <option *ngFor="let p of proyectos" [value]="p.nombre">{{ p.nombre }}</option>
+                <label for="laboratorioActualEdit">Laboratorio Actual</label>
+                <select id="laboratorioActualEdit" class="form-select" formControlName="laboratorioActual">
+                  <option value="">-- Seleccione laboratorio --</option>
+                  <option *ngFor="let p of laboratorios" [value]="p.nombre">{{ p.nombre }}</option>
                 </select>
               </div>
               <div class="col-md-4 mb-3">
@@ -101,13 +101,13 @@
               </div>
             </ng-container>
 
-            <!-- Para usuarios normales, sólo proyectoActual y bodega -->
-            <ng-template #soloBodegaProyecto>
+            <!-- Para usuarios normales, sólo laboratorioActual y bodega -->
+            <ng-template #soloBodegaLaboratorio>
               <div class="col-md-6 mb-3">
-                <label for="proyectoActualEdit">Proyecto Actual</label>
-                <select id="proyectoActualEdit" class="form-select" formControlName="proyectoActual">
-                  <option value="">-- Seleccione proyecto --</option>
-                  <option *ngFor="let p of proyectos" [value]="p.nombre">{{ p.nombre }}</option>
+                <label for="laboratorioActualEdit">Laboratorio Actual</label>
+                <select id="laboratorioActualEdit" class="form-select" formControlName="laboratorioActual">
+                  <option value="">-- Seleccione laboratorio --</option>
+                  <option *ngFor="let p of laboratorios" [value]="p.nombre">{{ p.nombre }}</option>
                 </select>
               </div>
               <div class="col-md-6 mb-3">
@@ -138,7 +138,7 @@
               <th>Nombre</th>
               <th>Marca</th>
               <th>Modelo</th>
-              <th>Proyecto Actual</th>
+              <th>Laboratorio Actual</th>
               <th>Usuario a Cargo</th>
               <th>Bodega</th>
               <th>Acciones</th>
@@ -150,8 +150,8 @@
               <td>{{ h.marca }}</td>
               <td>{{ h.modelo }}</td>
               <td>
-                {{ h.proyectoActual || '-' }}
-                <button *ngIf="!h.proyectoActual" class="btn btn-sm btn-outline-secondary ms-2" (click)="modificarHerramienta(h.nombre)">Marcar en Bodega</button>
+                {{ h.laboratorioActual || '-' }}
+                <button *ngIf="!h.laboratorioActual" class="btn btn-sm btn-outline-secondary ms-2" (click)="modificarHerramienta(h.nombre)">Marcar en Bodega</button>
               </td>
               <td>{{ h.usuarioCargo || '-' }}</td>
               <td>{{ h.bodega }}</td>

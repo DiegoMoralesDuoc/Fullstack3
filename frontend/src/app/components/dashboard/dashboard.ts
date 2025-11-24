@@ -87,7 +87,7 @@ export class Dashboard implements OnInit {
         },
         {
           number: proyectos.length,
-          text: 'Proyectos',
+          text: 'Laboratorios',
           bgClass: 'warning',
           svgPath: `<path d="M18.375 2.25c-1.035 0-1.875.84-1.875 1.875v15.75c..."></path>`,
           linkClass: 'link-light link-underline-opacity-0 link-underline-opacity-50-hover'

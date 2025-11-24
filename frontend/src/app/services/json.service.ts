@@ -28,9 +28,9 @@ export interface MaterialCategoria {
 export class JsonService {
 
   private regionComuna  = 'https://raw.githubusercontent.com/DiegoMoralesDuoc/json-api/main/regiones-comunas.json';
-  private marcas = 'assets/marcas.json';
-  private modelosHerramientas = 'assets/modelos-herramientas.json';
-  private materiales = 'assets/materiales.json';
+  private marcas = '../../assets/marcas.json';
+  private modelosHerramientas = '../assets/modelos-herramientas.json';
+  private materiales = '../../assets/materiales.json';
 
   constructor(private http: HttpClient) {}
 

@@ -7,12 +7,12 @@ import { JsonService } from '../../services/json.service';
     * Componente que registra, 
     * muestra
     * modifica
-    * y elimina proyectos
+    * y elimina laboratorios
     */
 
 
     /**
-    * Interfaces de usuario y proyecto
+    * Interfaces de usuario y laboratorios
     */
 
 interface Usuario {
@@ -21,7 +21,7 @@ interface Usuario {
   rol: string;
 }
 
-interface Proyecto {
+interface Laboratorio {
   nombre: string;
   region: string;
   comuna: string;
@@ -30,11 +30,11 @@ interface Proyecto {
 }
 
 @Component({
-  selector: 'app-proyectos',
+  selector: 'app-laboratorios',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './proyectos.html',
-  styleUrls: ['./proyectos.scss']
+  templateUrl: './laboratorios.html',
+  styleUrls: ['./laboratorios.scss']
 })
 
     /**
@@ -42,9 +42,9 @@ interface Proyecto {
     * la region y comuna se obtiene de un json en un git
     */
 
-export class Proyectos implements OnInit {
-  proyectoForm!: FormGroup;
-  proyectos: Proyecto[] = [];
+export class Laboratorios implements OnInit {
+  laboratorioForm!: FormGroup;
+  laboratorios: Laboratorio[] = [];
   jefes: Usuario[] = [];
   showAdminSection: boolean = false;
   regiones: string[] = [];
@@ -65,17 +65,17 @@ export class Proyectos implements OnInit {
       const usuarios: Usuario[] = JSON.parse(localStorage.getItem('usuarios') || '[]');
       this.jefes = usuarios.filter(u => u.rol === 'jefatura');
 
-      this.proyectos = JSON.parse(localStorage.getItem('proyectos') || '[]');
+      this.laboratorios = JSON.parse(localStorage.getItem('laboratorios') || '[]');
     } else {
       this.jefes = [];
-      this.proyectos = [];
+      this.laboratorios = [];
     }
 
     /**
     * Se validan los campos requeridos
     */
 
-    this.proyectoForm = this.fb.group({
+    this.laboratorioForm = this.fb.group({
       nombre: ['', Validators.required],
       region: ['', Validators.required],
       comuna: ['', Validators.required],
@@ -101,30 +101,30 @@ export class Proyectos implements OnInit {
     /**
     * Cambia las comunas en caso que otra region haya sido seleccionada
     */    
-    this.proyectoForm.get('region')?.valueChanges.subscribe(() => {
+    this.laboratorioForm.get('region')?.valueChanges.subscribe(() => {
       this.onRegionChange();
     });
   }
 
 
   onRegionChange() {
-    const regionSeleccionada = this.proyectoForm.get('region')?.value;
+    const regionSeleccionada = this.laboratorioForm.get('region')?.value;
     this.comunasFiltradas = this.comunasPorRegion[regionSeleccionada] || [];
-    this.proyectoForm.patchValue({ comuna: '' });
+    this.laboratorioForm.patchValue({ comuna: '' });
   }
 
-  agregarProyecto() {
-    if (this.proyectoForm.valid) {
-      this.proyectos.push(this.proyectoForm.value);
-      localStorage.setItem('proyectos', JSON.stringify(this.proyectos));
-      this.proyectoForm.reset();
+  agregarLaboratorio() {
+    if (this.laboratorioForm.valid) {
+      this.laboratorios.push(this.laboratorioForm.value);
+      localStorage.setItem('laboratorios', JSON.stringify(this.laboratorios));
+      this.laboratorioForm.reset();
     }
   }
 
-  eliminarProyecto(nombre: string) {
-    if (confirm('¿Seguro que quieres eliminar este proyecto?')) {
-      this.proyectos = this.proyectos.filter(p => p.nombre !== nombre);
-      localStorage.setItem('proyectos', JSON.stringify(this.proyectos));
+  eliminarLaboratorio(nombre: string) {
+    if (confirm('¿Seguro que quieres eliminar este laboratorio?')) {
+      this.laboratorios = this.laboratorios.filter(p => p.nombre !== nombre);
+      localStorage.setItem('laboratorios', JSON.stringify(this.laboratorios));
     }
   }
 }

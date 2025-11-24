@@ -11,7 +11,7 @@ import { JsonService } from '../../services/json.service';
 
 
 /**
- * Se crean las interfaces de Herramientas, proyecto y usuario
+ * Se crean las interfaces de Herramientas, laboratorio y usuario
  * los cuales se usarán para tomar los valores.
  * Destacando que Marca y Modelo estan en un arreglo en el 
  * json Modelos-herramientas.json
@@ -22,12 +22,12 @@ interface Herramienta {
   nombre: string;
   marca: string;
   modelo: string;
-  proyectoActual?: string;
+  laboratorioActual?: string;
   usuarioCargo?: string;
   bodega: string;
 }
 
-interface Proyecto {
+interface Laboratorio {
   nombre: string;
 }
 
@@ -49,7 +49,7 @@ interface Usuario {
 export class Herramientas implements OnInit {
   herramientaForm!: FormGroup;
   herramientas: Herramienta[] = [];
-  proyectos: Proyecto[] = [];
+  laboratorios: Laboratorio[] = [];
   usuarios: Usuario[] = [];
   usuariosFiltrados: Usuario[] = [];
 
@@ -76,7 +76,7 @@ export class Herramientas implements OnInit {
       this.isAdmin = user?.rol === 'admin' || user?.rol === 'jefatura';
 
       this.herramientas = JSON.parse(localStorage.getItem('herramientas') || '[]');
-      this.proyectos = JSON.parse(localStorage.getItem('proyectos') || '[]');
+      this.laboratorios = JSON.parse(localStorage.getItem('laboratorios') || '[]');
       this.usuarios = JSON.parse(localStorage.getItem('usuarios') || '[]');
       this.usuariosFiltrados = this.usuarios.filter(u => u.rol && u.rol !== 'admin');
 
@@ -100,7 +100,7 @@ export class Herramientas implements OnInit {
       nombre: ['', Validators.required],
       marca: ['', Validators.required],
       modelo: ['', Validators.required],
-      proyectoActual: [''],
+      laboratorioActual: [''],
       usuarioCargo: [''],
       bodega: ['', Validators.required]
     });
@@ -142,7 +142,7 @@ export class Herramientas implements OnInit {
          * Modifica herramienta seleccionada, 
          * pero en caso que no sea jefatura o admin 
          * solo permite cambios seleccionados, en este caso: 
-         * si esta en bodega y en que proyecto actual estan. 
+         * si esta en bodega y en que laboratorio actual estan. 
          * Caso contrario, permite modificar todo.
          */
   modificarHerramienta(nombre: string) {
@@ -158,7 +158,7 @@ export class Herramientas implements OnInit {
         nombre: [this.herramientaSeleccionada.nombre, Validators.required],
         marca: [this.herramientaSeleccionada.marca, Validators.required],
         modelo: [this.herramientaSeleccionada.modelo, Validators.required],
-        proyectoActual: [this.herramientaSeleccionada.proyectoActual || ''],
+        laboratorioActual: [this.herramientaSeleccionada.laboratorioActual || ''],
         usuarioCargo: [this.herramientaSeleccionada.usuarioCargo || ''],
         bodega: [this.herramientaSeleccionada.bodega, Validators.required]
       });
@@ -169,14 +169,14 @@ export class Herramientas implements OnInit {
 
     } else {
       this.herramientaForm = this.fb.group({
-        proyectoActual: [this.herramientaSeleccionada.proyectoActual || ''],
+        laboratorioActual: [this.herramientaSeleccionada.laboratorioActual || ''],
         bodega: [this.herramientaSeleccionada.bodega, Validators.required]
       });
     }
   }
 
         /**
-         * En caso que la herramienta no tenga proyecto
+         * En caso que la herramienta no tenga laboratorio
          * Se marca automáticamente que esta en bodega
          */
   marcarEnBodega() {
@@ -185,7 +185,7 @@ export class Herramientas implements OnInit {
     const index = this.herramientas.findIndex(h => h.nombre === this.herramientaSeleccionada!.nombre);
     if (index < 0) return;
 
-    this.herramientas[index].proyectoActual = '';
+    this.herramientas[index].laboratorioActual = '';
     this.herramientas[index].bodega = 'En bodega';
     localStorage.setItem('herramientas', JSON.stringify(this.herramientas));
 
@@ -203,7 +203,7 @@ export class Herramientas implements OnInit {
     if (this.isAdmin) {
       this.herramientas[index] = this.herramientaForm.value;
     } else {
-      this.herramientas[index].proyectoActual = this.herramientaForm.value.proyectoActual;
+      this.herramientas[index].laboratorioActual = this.herramientaForm.value.laboratorioActual;
       this.herramientas[index].bodega = this.herramientaForm.value.bodega;
     }
 
