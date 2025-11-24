@@ -68,7 +68,7 @@ export class Dashboard implements OnInit {
       const usuarios = JSON.parse(localStorage.getItem('usuarios') || '[]');
       const tickets = JSON.parse(localStorage.getItem('tickets') || '[]');
       const proyectos = JSON.parse(localStorage.getItem('proyectos') || '[]');
-      const herramientas = JSON.parse(localStorage.getItem('herramientas') || '[]');      
+      const analisis = JSON.parse(localStorage.getItem('analisis') || '[]');      
 
       this.smallBoxes = [
         {
@@ -93,8 +93,8 @@ export class Dashboard implements OnInit {
           linkClass: 'link-light link-underline-opacity-0 link-underline-opacity-50-hover'
         },
         {
-          number: herramientas.length,
-          text: 'Herramientas',
+          number: analisis.length,
+          text: 'Analisis',
           bgClass: 'danger',
           svgPath: `<path d="M18.375 2.25c-1.035 0-1.875.84-1.875 1.875v15.75c..."></path>`,
           linkClass: 'link-light link-underline-opacity-0 link-underline-opacity-50-hover'

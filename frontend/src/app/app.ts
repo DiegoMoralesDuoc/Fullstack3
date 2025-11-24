@@ -37,10 +37,16 @@ export class App {
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe((event: NavigationEnd) => {
-        const noLayoutRoutes = ['/login'];
-        const currentUrl = event.urlAfterRedirects.split('?')[0].toLowerCase();
 
-        this.showMainLayout = !noLayoutRoutes.includes(currentUrl);
+      const noLayoutRoutes = ['/login', '/recuperarpass'];
+
+      // Normalizamos la URL actual
+      const currentUrl = event.urlAfterRedirects
+        .split('?')[0]
+        .replace(/\/+$/, '')
+        .toLowerCase();
+
+      this.showMainLayout = !noLayoutRoutes.includes(currentUrl);
     });
   }
 

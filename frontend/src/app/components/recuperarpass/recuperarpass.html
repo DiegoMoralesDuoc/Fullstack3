@@ -1,0 +1,52 @@
+<div class="login-page bg-body-secondary">
+  <div class="container mt-2"></div>
+  <div class="login-box">
+    <div class="card card-outline card-primary">
+      <div class="card-header">
+        <a class="link-dark text-center link-offset-2 link-opacity-100">
+          <h1 class="mb-0"><b>Lab_Box</b></h1>
+        </a>
+      </div>
+
+      <div class="card-body login-card-body">
+        <p class="login-box-msg">Recuperar contraseña</p>
+
+        <form (ngSubmit)="recuperar()">
+          <!-- Campo Email -->
+          <div class="input-group mb-3">
+            <div class="form-floating">
+              <input
+                type="email"
+                [(ngModel)]="email"
+                name="email"
+                class="form-control"
+                id="recoverEmail"
+                required
+              />
+              <label for="recoverEmail">Email</label>
+            </div>
+            <div class="input-group-text">
+              <span class="bi bi-envelope"></span>
+            </div>
+          </div>
+
+          <!-- Botón Recuperar -->
+          <div class="row">
+            <div class="col-12 mb-3">
+              <div class="d-grid gap-2">
+                <button class="btn btn-primary" type="submit">Recuperar</button>
+              </div>
+            </div>
+          </div>
+        </form>
+
+        <!-- Volver al login -->
+        <div class="mt-2 text-center">
+          <button type="button" class="btn btn-link" (click)="goToLogin()">
+            Volver al login
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -142,4 +142,8 @@ export class Login implements OnInit {
       });
     }
   }
+
+    goToRecuperarPass() {
+      this.router.navigate(['/recuperarpass']);
+    }
 }

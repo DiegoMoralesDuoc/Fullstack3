@@ -1,0 +1,67 @@
+<div class="app-content p-4">
+  <div class="container-fluid">
+    <div class="card shadow-sm mb-4">
+      <ng-container *ngIf="showAdminSection">
+        <div class="card-header bg-primary text-white">
+          <h5 class="mb-0">Agregar Analisis</h5>
+        </div>
+
+        <div class="card-body">
+          <form [formGroup]="analisiForm" (ngSubmit)="agregarAnalisi()">
+            <div class="row">
+              <div class="col-md-4 mb-3">
+                <label for="nombre">Nombre Analisis</label>
+                <input type="text" id="nombre" class="form-control" formControlName="nombre" />
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label for="tipo">Tipo</label>
+                <input type="text" id="tipo" class="form-control" formControlName="tipo" />
+              </div>
+            </div>
+
+            <button class="btn btn-success" type="submit" [disabled]="!analisiForm.valid">
+              Agregar Analisis
+            </button>
+          </form>
+        </div>
+      </ng-container>
+    </div>
+
+    <div class="card shadow-sm">
+      <div class="card-header bg-dark text-white">
+        <h5 class="mb-0">Listado de Analisis</h5>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive"></div>
+          <table class="table table-bordered table-hover">
+            <thead class="table-light">
+              <tr>
+                <th>Nombre</th>
+                <th>Tipo</th>
+                <th>Fecha Creación</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let p of analisis">
+                <td>{{ p.nombre }}</td>
+                <td>{{ p.tipo }}</td>
+                <td>{{ p.fechaCreacion | date:'dd/MM/yyyy HH:mm' }}</td>
+                <td>
+                  <ng-container *ngIf="showAdminSection">
+                    <button class="btn btn-danger btn-sm" (click)="eliminarAnalisi(p.nombre)">
+                      <i class="bi bi-trash"></i> Eliminar
+                    </button>
+                  </ng-container>
+                </td>
+              </tr>
+              <tr *ngIf="analisis.length === 0">
+                <td colspan="6" class="text-center">No hay Analisis registrados.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
