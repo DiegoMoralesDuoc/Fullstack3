@@ -1,95 +1,68 @@
-/* ==== Global & Layout ==== */
-html, body {
-  height: 100%;
-  margin: 0; 
-  padding: 0;
-  overflow: hidden;
-}
-
+/* ==== VARIABLES ==== */
 $header-height: 3.5rem;
 $sidebar-width: 250px;
 $footer-height: 3.5rem;
 
+/* ==== Global ==== */
+html, body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden; /* Scroll lo maneja app-main */
+}
+
 /* ==== Wrapper general ==== */
 .app-wrapper {
   display: flex;
-  height: calc(100vh - $footer-height); /* altura ventana menos footer */
+  margin-top: $header-height;
+  height: calc(100vh - $header-height - $footer-height);
+  overflow: hidden; 
 }
 
-/* ==== Sidebar section ==== */
-app-sidebar, .app-sidebar {
+/* ==== Sidebar ==== */
+app-sidebar {
   width: 250px;
   position: fixed;
-  top: 3.5rem;      /* justo debajo del header */
-  bottom: 3rem;    
+  top: 3.5rem;   
+  bottom: 3.5rem;
   left: 0;
-  background-color: #212529;
-  color: white;
   overflow-y: auto;
-  flex-shrink: 0;
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-  transition: transform 0.3s ease;
-  z-index: 10;
-
+  background-color: #212529;
 }
 
 /* Sidebar en móviles */
 @media (max-width: 768px) {
   app-sidebar, .app-sidebar {
     position: fixed;
-    top: 1.5rem;
+    top: $header-height;
     left: 0;
-    width: 250px;
-    height: calc(100vh - 3.5rem);
-    background-color: #212529;
-    color: white;
-    z-index: 1051;
-    overflow-y: auto;
     transform: translateX(-100%);
-    transition: transform 0.3s ease-in-out;
-    padding-top: 1.5rem;
+    transition: transform 0.3s ease;
+    z-index: 1051;
   }
-
-  app-sidebar.show, .app-sidebar.show {
+  app-sidebar.show {
     transform: translateX(0);
-  }
-
-  .sidebar-overlay {
-    position: fixed;
-    top: 1.5rem;
-    left: 0;
-    width: 100vw;
-    height: calc(100vh - 1.5rem);
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1050;
   }
 }
 
-/* ==== Main content section ==== */
+/* ==== Main content ==== */
 .app-main {
-  margin-left: $sidebar-width;
-  padding-top: $header-height+3.5rem;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
   margin-left: 250px;
+  margin-top: 3.5rem; 
+  margin-bottom: 3.5rem; 
+  padding: 1rem;
+  height: calc(100vh - 3.5rem - 3.5rem);
+  overflow-y: auto;
 }
 
 @media (max-width: 768px) {
   .app-main {
     margin-left: 0;
-    height: auto;
-    padding-top: $header-height+1.5rem;
   }
 }
 
-/* ==== Header section ==== */
+/* ==== Header ==== */
 app-header, .app-header {
-  height: 3.5rem;
-  flex-shrink: 0;
+  height: $header-height;
   position: fixed;
   top: 0;
   left: 0;
@@ -99,74 +72,60 @@ app-header, .app-header {
   color: white;
 }
 
-.navbar-nav {
-  overflow: hidden;
-}
-
-.navbar-nav .btn {
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  max-width: 100px;
-}
-
-/* Alineación del logo en header con sidebar */
-.app-header .sidebar-brand {
-  width: 250px;
-  display: flex;
-  align-items: center;
-  position: relative;
-  left: 0;
-  top: 0;
-  padding-left: 1rem;
-  background-color: inherit;
-  z-index: 1;
-  padding-bottom: 0 !important;
-  margin-bottom: 0 !important;
-  border-bottom: none !important;
-}
-/* Boton del header para ocultar Sidebar*/
-.sidebar-brand button.btn {
-  border: none;  
-  background-color: transparent; 
-  color: white;  
-  margin-top: -12px;
-}
-
-.sidebar-brand button.btn:hover,
-.sidebar-brand button.btn:focus {
-  background-color: rgba(255, 255, 255, 0.15); /* overlay semi-transparente */
-  color: #ffd700; 
-  outline: none;
-  box-shadow: none;
-}
-
-/* Padding interno container-fluid header */
-.app-header .container-fluid {
-  padding-left: 1rem;
-  padding-right: 1rem;
-  position: relative;
-}
-
-/* ==== Contenido principal ==== */
+/* ==== Content ==== */
 .app-content {
-  padding-top: $header-height+3.5rem;
-  flex-grow: 1;
-  overflow-y: auto;
-  background-color: #f8f9fa;
   padding: 1rem;
+  background-color: #f8f9fa;
 }
 
-/* ==== Footer section ==== */
+/* ==== Footer ==== */
 app-footer, .app-footer {
-  height: 3rem;
+  height: 3.5rem;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
   background-color: #e9ecef;
-  color: #6c757d;
   border-top: 1px solid #dee2e6;
   display: flex;
-  align-items: center;
   justify-content: center;
-  width: 100vw;
-  position: relative;
-  z-index: 10;
+  align-items: center;
+}
+
+
+/* ===== SIDEBAR MOBILE ===== */
+@media (max-width: 768px) {
+  app-sidebar, .app-sidebar {
+    position: fixed;
+    top: 3.5rem;            /* header fijo */
+    left: 0;
+    width: 250px;
+    height: calc(100vh - 3.5rem); 
+    background: #212529;
+    overflow-y: auto;
+    transform: translateX(-100%);  /* oculto por defecto */
+    transition: transform 0.3s ease-in-out;
+    z-index: 20000;        /* MUY importante */
+  }
+
+  /* Cuando está visible */
+  app-sidebar.show, .app-sidebar.show {
+    transform: translateX(0);
+  }
+
+  /* Overlay oscuro */
+  .sidebar-overlay {
+    position: fixed;
+    top: 3.5rem; 
+    left: 0;
+    width: 100vw;
+    height: calc(100vh - 3.5rem);
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 19999;
+  }
+
+  /* Evita mover el contenido */
+  .app-main {
+    margin-left: 0 !important;
+  }
 }

@@ -59,38 +59,39 @@
         <h5 class="mb-0">Listado de Proyectos</h5>
       </div>
       <div class="card-body">
-        <table class="table table-bordered table-hover">
-          <thead class="table-light">
-            <tr>
-              <th>Nombre</th>
-              <th>Región</th>
-              <th>Comuna</th>
-              <th>Dirección</th>
-              <th>Jefe a Cargo</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let p of proyectos">
-              <td>{{ p.nombre }}</td>
-              <td>{{ p.region }}</td>
-              <td>{{ p.comuna }}</td>
-              <td>{{ p.direccion }}</td>
-              <td>{{ p.jefe }}</td>
-              <td>
-                <ng-container *ngIf="showAdminSection">
-                  <button class="btn btn-danger btn-sm" (click)="eliminarProyecto(p.nombre)">
-                    <i class="bi bi-trash"></i> Eliminar
-                  </button>
-                </ng-container>
-              </td>
-            </tr>
-            <tr *ngIf="proyectos.length === 0">
-              <td colspan="6" class="text-center">No hay proyectos registrados.</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="table-responsive"></div>
+          <table class="table table-bordered table-hover">
+            <thead class="table-light">
+              <tr>
+                <th>Nombre</th>
+                <th>Región</th>
+                <th>Comuna</th>
+                <th>Dirección</th>
+                <th>Jefe a Cargo</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let p of proyectos">
+                <td>{{ p.nombre }}</td>
+                <td>{{ p.region }}</td>
+                <td>{{ p.comuna }}</td>
+                <td>{{ p.direccion }}</td>
+                <td>{{ p.jefe }}</td>
+                <td>
+                  <ng-container *ngIf="showAdminSection">
+                    <button class="btn btn-danger btn-sm" (click)="eliminarProyecto(p.nombre)">
+                      <i class="bi bi-trash"></i> Eliminar
+                    </button>
+                  </ng-container>
+                </td>
+              </tr>
+              <tr *ngIf="proyectos.length === 0">
+                <td colspan="6" class="text-center">No hay proyectos registrados.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
-</div>
