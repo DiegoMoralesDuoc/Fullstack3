@@ -35,7 +35,7 @@ interface SmallBox {
 /**
  * Servicio que maneja la página de dashboard
  * en la cual habrá 4 cuadros de información respecto a cantidades de
- * usuarios / tickets / proyectos / herramientas.
+ * usuarios / tickets / laboratorios / herramientas.
  */
 
 export class Dashboard implements OnInit {
@@ -67,7 +67,7 @@ export class Dashboard implements OnInit {
 
       const usuarios = JSON.parse(localStorage.getItem('usuarios') || '[]');
       const tickets = JSON.parse(localStorage.getItem('tickets') || '[]');
-      const proyectos = JSON.parse(localStorage.getItem('proyectos') || '[]');
+      const laboratorios = JSON.parse(localStorage.getItem('laboratorios') || '[]');
       const analisis = JSON.parse(localStorage.getItem('analisis') || '[]');      
 
       this.smallBoxes = [
@@ -86,7 +86,7 @@ export class Dashboard implements OnInit {
           linkClass: 'link-light link-underline-opacity-0 link-underline-opacity-50-hover'
         },
         {
-          number: proyectos.length,
+          number: laboratorios.length,
           text: 'Laboratorios',
           bgClass: 'warning',
           svgPath: `<path d="M18.375 2.25c-1.035 0-1.875.84-1.875 1.875v15.75c..."></path>`,

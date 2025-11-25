@@ -8,7 +8,6 @@ import com.diegomorales.demo.Control_Usuarios.repository.UsuarioRepository;
 import com.diegomorales.demo.exception.ResourceNotFoundException;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UsuarioServiceImpl implements UsuarioService {

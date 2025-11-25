@@ -27,22 +27,20 @@ export interface MaterialCategoria {
 
 export class JsonService {
 
-  private regionComuna  = 'https://raw.githubusercontent.com/DiegoMoralesDuoc/json-api/main/regiones-comunas.json';
-  private marcas = '../../assets/marcas.json';
-  private modelosHerramientas = '../assets/modelos-herramientas.json';
-  private materiales = '../../assets/materiales.json';
+  private regionComuna  = '/assets/regiones-comunas.json';
+  private marcas = '/assets/marcas.json';
+  private modelosHerramientas = '/assets/modelos-herramientas.json';
+  private materiales = '/assets/materiales.json';
 
   constructor(private http: HttpClient) {}
 
   getRegionesYComunas(): Observable<{ region: string, comunas: string[] }[]> {
-    return this.http.get(this.regionComuna, { responseType: 'text' }).pipe(
-      map(response => JSON.parse(response))
-    );
+    return this.http.get<{ region: string, comunas: string[] }[]>(this.regionComuna);
   }
 
   getMarcas(): Observable<string[]> {
-  return this.http.get<string[]>(this.marcas);
-}
+    return this.http.get<string[]>(this.marcas);
+  }
 
   getModelosHerramientas(): Observable<{ marca: string; modelos: string[] }[]> {
     return this.http.get<{ marca: string; modelos: string[] }[]>(this.modelosHerramientas);

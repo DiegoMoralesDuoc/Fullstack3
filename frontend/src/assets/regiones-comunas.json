@@ -1,0 +1,58 @@
+[
+  {
+    "region": "Arica y Parinacota",
+    "comunas": ["Arica", "Camarones", "Putre", "General Lagos"]
+  },
+  {
+    "region": "Tarapacá",
+    "comunas": ["Iquique", "Alto Hospicio", "Pozo Almonte", "Camiña", "Colchane", "Huara", "Pica"]
+  },
+  {
+    "region": "Antofagasta",
+    "comunas": ["Antofagasta", "Mejillones", "Sierra Gorda", "Taltal", "Calama", "Ollagüe", "San Pedro de Atacama", "Tocopilla", "María Elena"]
+  },
+  {
+    "region": "Atacama",
+    "comunas": ["Copiapó", "Caldera", "Tierra Amarilla", "Chañaral", "Diego de Almagro", "Vallenar", "Freirina", "Huasco", "Alto del Carmen"]
+  },
+  {
+    "region": "Coquimbo",
+    "comunas": ["La Serena", "Coquimbo", "Andacollo", "La Higuera", "Paihuano", "Vicuña", "Ovalle", "Combarbalá", "Monte Patria", "Punitaqui", "Río Hurtado", "Illapel", "Canela", "Los Vilos", "Salamanca"]
+  },
+  {
+    "region": "Valparaíso",
+    "comunas": ["Valparaíso", "Viña del Mar", "Concón", "Quilpué", "Villa Alemana", "Casablanca", "Quintero", "Puchuncaví", "San Antonio", "Cartagena", "El Tabo", "El Quisco", "Algarrobo", "Santo Domingo", "San Felipe", "Llaillay", "Putaendo", "Santa María", "Catemu", "Panquehue", "Los Andes", "Calle Larga", "Rinconada", "San Esteban", "La Ligua", "Cabildo", "Zapallar", "Papudo", "Petorca"]
+  },
+  {
+    "region": "Metropolitana de Santiago",
+    "comunas": ["Santiago", "Cerrillos", "Cerro Navia", "Conchalí", "El Bosque", "Estación Central", "Huechuraba", "Independencia", "La Cisterna", "La Florida", "La Granja", "La Pintana", "La Reina", "Las Condes", "Lo Barnechea", "Lo Espejo", "Lo Prado", "Macul", "Maipú", "Ñuñoa", "Pedro Aguirre Cerda", "Peñalolén", "Providencia", "Pudahuel", "Puente Alto", "Quilicura", "Quinta Normal", "Recoleta", "Renca", "San Joaquín", "San Miguel", "San Ramón", "Vitacura", "Padre Hurtado", "Pirque", "San Bernardo", "Calera de Tango", "Buin", "Paine", "Talagante", "El Monte", "Isla de Maipo", "Peñaflor", "Melipilla", "Curacaví", "María Pinto", "San Pedro", "Alhué", "Tiltil", "Lampa", "Colina"]
+  },
+  {
+    "region": "Libertador General Bernardo O'Higgins",
+    "comunas": ["Rancagua", "Machalí", "Graneros", "Rengo", "San Vicente", "Requínoa", "Doñihue", "Coinco", "Coltauco", "Las Cabras", "Peumo", "Pichidegua", "San Fernando", "Chépica", "Nancagua", "Placilla", "Santa Cruz", "Palmilla", "Peralillo", "Pumanque", "Lolol", "Pichilemu", "Marchigüe", "Navidad", "Litueche", "La Estrella"]
+  },
+  {
+    "region": "Maule",
+    "comunas": ["Talca", "Constitución", "Curepto", "Empedrado", "Maule", "Pelarco", "Pencahue", "Río Claro", "San Clemente", "San Rafael", "Curicó", "Hualañé", "Licantén", "Molina", "Rauco", "Romeral", "Sagrada Familia", "Teno", "Vichuquén", "Linares", "Colbún", "Longaví", "Parral", "Retiro", "San Javier", "Villa Alegre", "Yerbas Buenas", "Cauquenes", "Chanco", "Pelluhue"]
+  },
+  {
+    "region": "Ñuble",
+    "comunas": ["Chillán", "Chillán Viejo", "Bulnes", "Cobquecura", "Coelemu", "Coihueco", "El Carmen", "Ninhue", "Ñiquén", "Pemuco", "Pinto", "Portezuelo", "Quillón", "Quirihue", "Ránquil", "San Carlos", "San Fabián", "San Ignacio", "San Nicolás", "Treguaco", "Yungay"]
+  },
+  {
+    "region": "Biobío",
+    "comunas": ["Concepción", "Talcahuano", "Hualpén", "San Pedro de la Paz", "Chiguayante", "Coronel", "Lota", "Tomé", "Penco", "Hualqui", "Santa Juana", "Florida", "Quillón", "Yumbel", "Cabrero", "Monte Águila", "Nacimiento", "Los Ángeles", "Laja", "San Rosendo", "Negrete", "Mulchén", "Santa Bárbara", "Quilleco", "Antuco", "Tucapel", "Alto Biobío"]
+  },
+  {
+    "region": "La Araucanía",
+    "comunas": ["Temuco", "Padre Las Casas", "Villarrica", "Pucón", "Nueva Imperial", "Carahue", "Loncoche", "Toltén", "Freire", "Cunco", "Gorbea", "Lautaro", "Melipeuco", "Curarrehue", "Saavedra", "Teodoro Schmidt", "Vilcún", "Perquenco", "Galvarino", "Cholchol", "Renaico", "Angol", "Collipulli", "Traiguén", "Purén", "Los Sauces", "Lumaco", "Ercilla", "Lonquimay", "Curacautín", "Victoria"]
+  },
+  {
+    "region": "Los Ríos",
+    "comunas": ["Valdivia", "Corral", "Lanco", "Los Lagos", "Máfil", "Mariquina", "Paillaco", "Panguipulli", "La Unión", "Futrono", "Lago Ranco", "Río Bueno"]
+  },
+  {
+    "region": "Los Lagos",
+    "comunas": ["Puerto Montt", "Puerto Varas", "Llanquihue", "Frutillar", "Los Muermos", "Calbuco", "Maullín", "Cochamó", "Ancud", "Castro", "Chonchi", "Curaco de Vélez", "Dalcahue", "Pulluqui"]
+    }
+]

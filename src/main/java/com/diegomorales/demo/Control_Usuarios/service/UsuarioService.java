@@ -1,7 +1,5 @@
 package com.diegomorales.demo.Control_Usuarios.service;
 import java.util.List;
-import java.util.Optional;
-
 import com.diegomorales.demo.Control_Usuarios.model.Usuario;
 
 public interface UsuarioService {
