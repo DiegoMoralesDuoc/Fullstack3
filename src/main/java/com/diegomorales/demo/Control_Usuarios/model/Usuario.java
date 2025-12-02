@@ -28,6 +28,9 @@ public class Usuario {
     @Column(name = "password")
     private String password;
 
+    @Column(name = "rol")
+    private String rol;
+
 
     //Getter and Setter section
     //Getter
@@ -51,6 +54,9 @@ public class Usuario {
         return password;
     }
 
+    public String getRol(){
+        return rol;
+    }
 
     //Setter
     public void setId(Long id){
@@ -72,4 +78,9 @@ public class Usuario {
     public void setPassword(String password){
         this.password = password;
     }
+
+    public void setRol(String rol){
+        this.rol = rol;
+    }
+
 }    

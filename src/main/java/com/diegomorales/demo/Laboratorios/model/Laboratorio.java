@@ -21,8 +21,11 @@ public class Laboratorio {
     @Column(name = "region")
     private String region;
 
-    @Column(name = "ciudad")
-    private String ciudad;    
+    @Column(name = "comuna")
+    private String comuna;    
+
+    @Column(name = "direccion")
+    private String direccion;    
 
     @Column(name = "tipoanalisis")
     private String tipoanalisis;
@@ -42,11 +45,14 @@ public class Laboratorio {
         return region;
     }
 
-    public String getCiudad (){
-        return ciudad;
+    public String getComuna (){
+        return comuna;
     }
 
-    public String getTipoanalis(){
+    public String getDireccion (){
+        return direccion;
+    }
+    public String getTipoanalisis(){
         return tipoanalisis;
     }
 
@@ -64,8 +70,12 @@ public class Laboratorio {
         this.region = region;
     }
     
-    public void setCiudad(String ciudad){
-        this.ciudad = ciudad;
+    public void setComuna(String comuna){
+        this.comuna = comuna;
+    }
+
+    public void setDireccion(String direccion){
+        this.direccion = direccion;
     }
 
     public void setTipoanalisis(String tipoanalisis){

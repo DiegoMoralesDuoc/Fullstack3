@@ -67,6 +67,7 @@
                 <th>Región</th>
                 <th>Comuna</th>
                 <th>Dirección</th>
+                <th>Tipo de Analisis</th>
                 <th>Director a Cargo</th>
                 <th>Acciones</th>
               </tr>
@@ -76,11 +77,12 @@
                 <td>{{ p.nombre }}</td>
                 <td>{{ p.region }}</td>
                 <td>{{ p.comuna }}</td>
-                <td>{{ p.direccion }}</td>
+                <td>{{ p.direccion }}</td>.
+                <td>{{ p.tipoanalisis }}</td>
                 <td>{{ p.jefe }}</td>
                 <td>
                   <ng-container *ngIf="showAdminSection">
-                    <button class="btn btn-danger btn-sm" (click)="eliminarLaboratorio(p.nombre)">
+                    <button class="btn btn-danger btn-sm" (click)="eliminarLaboratorio(p.id)">
                       <i class="bi bi-trash"></i> Eliminar
                     </button>
                   </ng-container>
