@@ -8,7 +8,7 @@ import { Laboratorio } from '../models/laboratorio';
 })
 export class LaboratorioService {
 
-  private apiUrl = 'http://localhost:8082/laboratorios';
+  private apiUrl = 'http://localhost:8080/laboratorios';
 
   constructor(private http: HttpClient) {}
 

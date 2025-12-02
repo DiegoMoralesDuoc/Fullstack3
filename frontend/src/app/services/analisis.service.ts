@@ -8,7 +8,7 @@ import { Analisis } from '../models/analisis';
 })
 export class AnalisisService {
 
-  private apiUrl = 'http://localhost:8082/analisis';
+  private apiUrl = 'http://localhost:8080/analisis';
 
   constructor(private http: HttpClient) {}
 
