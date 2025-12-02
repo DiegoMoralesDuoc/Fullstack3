@@ -44,13 +44,13 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let p of analisis">
-                <td>{{ p.nombre }}</td>
-                <td>{{ p.tipo }}</td>
-                <td>{{ p.fechaCreacion | date:'dd/MM/yyyy HH:mm' }}</td>
+              <tr *ngFor="let a of analisis">
+                <td>{{ a.nombre }}</td>
+                <td>{{ a.tipo }}</td>
+                <td>{{ a.fechaCreacion | date:'dd/MM/yyyy HH:mm' }}</td>
                 <td>
                   <ng-container *ngIf="showAdminSection">
-                    <button class="btn btn-danger btn-sm" (click)="eliminarAnalisi(p.nombre)">
+                    <button class="btn btn-danger btn-sm" (click)="eliminarAnalisi(a.id)">
                       <i class="bi bi-trash"></i> Eliminar
                     </button>
                   </ng-container>

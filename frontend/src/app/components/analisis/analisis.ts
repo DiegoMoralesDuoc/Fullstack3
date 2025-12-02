@@ -3,6 +3,9 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angula
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { JsonService } from '../../services/json.service';
 
+/* Conexion con backend */
+import { Analisis } from '../../models/analisis';
+import { AnalisisService } from '../../services/analisis.service';
     /**
     * Componente que registra, 
     * muestra
@@ -23,12 +26,6 @@ interface Usuario {
   rol: string;
 }
 
-interface Analisi {
-  nombre: string;
-  tipo: string;
-  fechaCreacion: Date;
-}
-
 @Component({
   selector: 'app-analisis',
   standalone: true,
@@ -42,16 +39,17 @@ interface Analisi {
     * la region y comuna se obtiene de un json en un git
     */
 
-export class Analisis implements OnInit {
+export class AnalisisComponent implements OnInit {
   analisiForm!: FormGroup;
-  analisis: Analisi[] = [];
+  analisis: Analisis[] = [];
   jefes: Usuario[] = [];
   showAdminSection: boolean = false;
 
   constructor(
     private fb: FormBuilder,
     @Inject(PLATFORM_ID) private platformId: Object,
-    private jsonService: JsonService
+    private jsonService: JsonService,
+    private analisisService: AnalisisService
   ) {}
 
   ngOnInit(): void {
@@ -62,11 +60,12 @@ export class Analisis implements OnInit {
       const usuarios: Usuario[] = JSON.parse(localStorage.getItem('usuarios') || '[]');
       this.jefes = usuarios.filter(u => u.rol === 'jefatura');
 
-      this.analisis = (JSON.parse(localStorage.getItem('analisis') || '[]'))
-        .map((a: any) => ({
-          ...a,
-          fechaCreacion: new Date(a.fechaCreacion)
-        }));
+    this.analisisService.getAnalisis().subscribe(data => {
+      this.analisis = data.map(a => ({
+        ...a,
+        fechaCreacion: new Date(a.fechaCreacion)
+      }));
+    });
 
     } else {
       this.analisis = [];
@@ -82,23 +81,27 @@ export class Analisis implements OnInit {
     });
   }
 
-  agregarAnalisi() {
-    if (this.analisiForm.valid) {
-      const nuevoAnalisi: Analisi = {
-        ...this.analisiForm.value,
-        fechaCreacion: new Date()
+    agregarAnalisi() {
+      if (this.analisiForm.valid) {
+        const nuevoAnalisis: Analisis = {
+          ...this.analisiForm.value,
+          fechaCreacion: new Date().toISOString()
         };
 
-      this.analisis.push(nuevoAnalisi);
-      localStorage.setItem('analisis', JSON.stringify(this.analisis));
-      this.analisiForm.reset();
+      this.analisisService.createAnalisis(nuevoAnalisis).subscribe(res => {
+        this.analisis.push(res);
+        this.analisiForm.reset();
+        });
+      }
     }
-  }
 
-  eliminarAnalisi(nombre: string) {
-    if (confirm('¿Seguro que quieres eliminar este analisis?')) {
-      this.analisis = this.analisis.filter(p => p.nombre !== nombre);
-      localStorage.setItem('analisis', JSON.stringify(this.analisis));
-    }
+      eliminarAnalisi(id: number) {
+        if (confirm('¿Seguro que quieres eliminar este análisis?')) {
+          this.analisisService.deleteAnalisis(id).subscribe(() => {
+            this.analisis = this.analisis.filter(a => a.id !== id);
+            });
+        }
+      }
   }
-}
+  
+
