@@ -4,6 +4,7 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { HttpClientModule } from '@angular/common/http';
 
 import { SidebarComponent } from './shared/sidebar/sidebar';
 import { HeaderComponent } from './shared/header/header';
@@ -13,7 +14,8 @@ import { FooterComponent } from './shared/footer/footer';
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet, CommonModule, FormsModule, 
-    SidebarComponent, HeaderComponent, FooterComponent
+    SidebarComponent, HeaderComponent, FooterComponent,
+    HttpClientModule
   ],
   templateUrl: './app.html',
   styleUrls: ['./app.scss']
@@ -65,3 +67,4 @@ export class App {
     }
   }
 }
+

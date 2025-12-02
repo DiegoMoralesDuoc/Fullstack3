@@ -13,6 +13,7 @@ import java.util.List;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/usuarios")
@@ -49,4 +50,10 @@ public class UsuarioController {
         usuarioService.deleteUsuario(id);
     }
     
+    @PostMapping("/recuperar")
+    public void recuperarPassword(@RequestBody Map<String, String> body) {
+        String correo = body.get("correo");
+        usuarioService.enviarRecuperacion(correo);
+    }
+
 }

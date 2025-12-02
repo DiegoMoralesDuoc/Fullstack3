@@ -1,8 +1,7 @@
-import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { isPlatformBrowser } from '@angular/common';
-
+import { HttpClient } from '@angular/common/http';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -13,35 +12,37 @@ import Swal from 'sweetalert2';
   styleUrls: ['./recuperarpass.scss']
 })
 export class RecuperarPass  {
+
   email: string = '';
 
   constructor(
-    private router: Router,
-    @Inject(PLATFORM_ID) private platformId: Object
+    private http: HttpClient,
+    private router: Router
   ) {}
 
   recuperar() {
-    const usuarios = JSON.parse(localStorage.getItem('usuarios') || '[]');
 
-    const usuario = usuarios.find((u: any) => u.email === this.email);
-
-    if (!usuario) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Correo no encontrado',
-        text: 'No existe una cuenta asociada a este correo'
-      });
-      return;
-    }
-
-    Swal.fire({
-      icon: 'info',
-      title: 'Contraseña encontrada',
-      text: `Tu contraseña es: ${usuario.password}`
+    this.http.post('http://localhost:8080/usuarios/recuperar', {
+      correo: this.email
+    }).subscribe({
+      next: () => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Correo enviado',
+          text: 'Revisa tu bandeja de entrada'
+        });
+      },
+      error: () => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Correo no registrado',
+          text: 'No existe un usuario con ese correo'
+        });
+      }
     });
   }
 
-      goToLogin() {
-        this.router.navigate(['/login']);
-      }
+  goToLogin() {
+    this.router.navigate(['/login']);
+  }
 }

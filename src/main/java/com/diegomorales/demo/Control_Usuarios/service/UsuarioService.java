@@ -8,4 +8,6 @@ public interface UsuarioService {
     Usuario createUsuario(Usuario usuario);
     Usuario updateUsuario(Long id, Usuario usuario);
     void deleteUsuario(Long id);
+    void enviarRecuperacion(String correo);
+    Usuario getByCorreo(String correo);
 }

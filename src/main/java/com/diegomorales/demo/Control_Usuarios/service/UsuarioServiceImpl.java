@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import com.diegomorales.demo.Control_Usuarios.model.Usuario;
 import com.diegomorales.demo.Control_Usuarios.repository.UsuarioRepository;
 import com.diegomorales.demo.exception.ResourceNotFoundException;
+import com.diegomorales.demo.service.MailService;
 
 import java.util.List;
 
@@ -48,4 +49,36 @@ public class UsuarioServiceImpl implements UsuarioService {
     public void deleteUsuario(Long id){
         usuarioRepository.deleteById(id);
     }
+
+    @Autowired
+    private MailService mailService;
+    
+
+    @Override
+    public Usuario getByCorreo(String correo) {
+        return usuarioRepository.findByCorreo(correo)
+                .orElse(null);
+    }    
+
+
+    @Override
+    public void enviarRecuperacion(String correo) {
+        Usuario usuario = getByCorreo(correo);
+
+        if (usuario == null) {
+            throw new RuntimeException("Correo no registrado");
+        }
+
+        String mensaje = "Hola " + usuario.getNombre() +
+                ",\n\nTu contraseña es: " + usuario.getPassword() +
+                "\nNo compartas este correo con nadie.";
+
+        mailService.enviarCorreo(
+                usuario.getCorreo(),
+                "Recuperación de contraseña",
+                mensaje
+        );
+    }
+
+
 }
