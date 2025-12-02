@@ -31,6 +31,7 @@ export class JsonService {
   private marcas = '/assets/marcas.json';
   private modelosHerramientas = '/assets/modelos-herramientas.json';
   private materiales = '/assets/materiales.json';
+  private rol = '/assets/rol.json';
 
   constructor(private http: HttpClient) {}
 
@@ -48,5 +49,9 @@ export class JsonService {
 
   getMateriales(): Observable<MaterialCategoria[]> {
     return this.http.get<MaterialCategoria[]>(this.materiales);
+  }
+
+  getRol(): Observable<string[]> {
+    return this.http.get<string[]>(this.rol);
   }
 }

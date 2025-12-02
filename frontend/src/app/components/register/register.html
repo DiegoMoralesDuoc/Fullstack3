@@ -11,40 +11,61 @@
         </div>
 
         <div class="card-body">
+          <!-- Nombre -->
           <div class="form-floating mb-3">
             <input
-              id="name"
-              name="name"
+              id="nombre"
+              name="nombre"
               type="text"
               class="form-control"
               required
-              [(ngModel)]="name"
-              #nameCtrl="ngModel"
-              [class.is-invalid]="nameCtrl.invalid && nameCtrl.touched"
+              [(ngModel)]="nombre"
+              #nombreCtrl="ngModel"
+              [class.is-invalid]="nombreCtrl.invalid && nombreCtrl.touched"
             />
-            <label for="name">Nombre Completo</label>
-            <div *ngIf="nameCtrl.invalid && nameCtrl.touched" class="invalid-feedback">
-              Introduce el nombre completo.
+            <label for="nombre">Nombre</label>
+            <div *ngIf="nombreCtrl.invalid && nombreCtrl.touched" class="invalid-feedback">
+              Introduce el nombre.
             </div>
           </div>
 
+          <!-- Apellidos -->
           <div class="form-floating mb-3">
             <input
-              id="email"
-              name="email"
+              id="apellidos"
+              name="apellidos"
+              type="text"
+              class="form-control"
+              required
+              [(ngModel)]="apellidos"
+              #apellidosCtrl="ngModel"
+              [class.is-invalid]="apellidosCtrl.invalid && apellidosCtrl.touched"
+            />
+            <label for="apellidos">Apellidos</label>
+            <div *ngIf="apellidosCtrl.invalid && apellidosCtrl.touched" class="invalid-feedback">
+              Introduce los apellidos.
+            </div>
+          </div>
+
+          <!-- Correo -->
+          <div class="form-floating mb-3">
+            <input
+              id="correo"
+              name="correo"
               type="email"
               class="form-control"
               required
-              [(ngModel)]="email"
-              #emailCtrl="ngModel"
-              [class.is-invalid]="emailCtrl.invalid && emailCtrl.touched"
+              [(ngModel)]="correo"
+              #correoCtrl="ngModel"
+              [class.is-invalid]="correoCtrl.invalid && correoCtrl.touched"
             />
-            <label for="email">Correo electrónico</label>
-            <div *ngIf="emailCtrl.invalid && emailCtrl.touched" class="invalid-feedback">
+            <label for="correo">Correo electrónico</label>
+            <div *ngIf="correoCtrl.invalid && correoCtrl.touched" class="invalid-feedback">
               Introduce un correo válido.
             </div>
           </div>
 
+          <!-- Contraseña -->
           <div class="form-floating mb-3">
             <input
               id="password"
@@ -63,6 +84,7 @@
             </div>
           </div>
 
+          <!-- Rol -->
           <div class="mb-3">
             <label for="rol" class="form-label">Rol del usuario</label>
             <select
@@ -74,9 +96,7 @@
               #rolCtrl="ngModel"
               [class.is-invalid]="rolCtrl.invalid && rolCtrl.touched"
             >
-              <option value="user">Usuario</option>
-              <option value="jefatura">Jefatura</option>
-              <option value="admin">Administrador</option>
+              <option *ngFor="let r of roles" [value]="r">{{ r }}</option>
             </select>
             <div *ngIf="rolCtrl.invalid && rolCtrl.touched" class="invalid-feedback">
               Selecciona un rol válido.
