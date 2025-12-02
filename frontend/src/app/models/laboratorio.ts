@@ -1,3 +1,5 @@
+import { Usuario } from './usuario';
+
 export interface Laboratorio {
   id: number;
   nombre: string;
@@ -5,4 +7,5 @@ export interface Laboratorio {
   comuna: string;
   direccion: string;
   tipoanalisis: string;
+  jefe?: Usuario;
 }
